@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mapper.MemberMapper">
+	
+	<!-- 회원전체 정보 출력 -->
+	<select id="memberSelectAll" resultType="com.java.dto.Member">
+		select * from member 
+	</select>
+	
+	<!-- 회원한명 정보출력 -->
+	<select id="memberSelectOne" resultType="com.java.dto.Member">
+		select * from member where id=#{id}
+	</select>
+
+	<!--  회원 로그인 -->
+	<select id="memberSelectLogin" resultType="com.java.dto.Member">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+</mapper>
