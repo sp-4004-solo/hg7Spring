@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.java.dto.Board;
 import com.java.mapper.BoardMapper;
 @Service
-public class BServiceImpl implements BService{
+public class BServiceImpl implements BService{//자식메서드 구현해야함.
 	
 	
 	@Autowired//객체생성없이 사용

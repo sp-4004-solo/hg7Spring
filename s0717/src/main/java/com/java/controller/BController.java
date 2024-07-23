@@ -116,7 +116,7 @@ public class BController {
 		
 		String fileName="";
 		// 파일이 있을 경우 파일 저장
-		if(!file.isEmpty()) {
+		if(!file.isEmpty()) {//비어있다는 메소드
 			String ori_fileName = file.getOriginalFilename(); //실제 파일이름
 			UUID uuid = UUID.randomUUID();    // 랜덤숫자 생성
 			fileName = uuid+"_"+ori_fileName; // 파일이름 변경 (중복방지)

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.java.dto.Board;
 
-public interface BService {
+public interface BService {//부모메서드
 
 	ArrayList<Board> selectBoardAll();
 
