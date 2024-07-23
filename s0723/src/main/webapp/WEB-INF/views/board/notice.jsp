@@ -124,7 +124,13 @@ $(document).ready(function() {
 								<tr>
 									<td class="tnone">${board.bno }</td>
 									<td class="left">
-										<a href="noticeView?bno=${board.bno }">${board.btitle }</a>
+									<c:forEach begin="1" end="${board.bindent }" step="1">
+										<img src="/images/icon_reply.png" style="width:15px;">
+									</c:forEach>
+										<a href="noticeView?bno=${board.bno }&page=${page}&category=${category}&s_word=${s_word}">${board.btitle }</a>
+									<c:if test="${board.bfile != null }">
+									    <img src="/images/image.png" style="width:15px;">
+									</c:if>
 										<!-- <img src="../images/ico/ico_new.gif" alt="NEW" /> -->
 									</td>
 									<td><fmt:formatDate value="${board.bdate }" pattern="yyyy-MM-dd"/></td>
@@ -138,38 +144,75 @@ $(document).ready(function() {
 					<div class="btnAreaList">
 						<!-- 페이징이동1 -->
 						<div class="allPageMoving1">
-						<a href="#" class="n"><img src="../images/btn/btn_pre2.gif" alt="처음으로"/></a><a href="#" class="pre"><img src="../images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
-						<strong>1</strong>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
-						<a href="#" class="next"><img src="../images/btn/btn_next1.gif" alt="뒤페이지로"/></a><a href="#" class="n"><img src="../images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
+						<!-- 맨 처음페이지로이동 -->
+						<c:if test="${page!=1}">
+						<a href="notice?page=1&category=${category}&s_word=${s_word}" class="n"><img src="../images/btn/btn_pre2.gif" alt="처음으로"/></a>
+						</c:if>
+						<c:if test="${page==1 }">
+						<a class="n"><img src="../images/btn/btn_pre2.gif" alt="처음으로"/></a>
+						</c:if>
+						<!-- 한페이지 앞으로 이동 -->
+						<c:if test="${page>1}">
+						<a href="notice?page=${page-1}&category=${category}&s_word=${s_word}" class="pre"><img src="../images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
+						</c:if>
+						<c:if test="${page==1 }">
+						<a class="pre"><img src="../images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
+						</c:if>
+						<c:forEach begin="${startPage }" end="${endPage }" step="1" var="pNum">
+							<c:if test="${pNum == page}">
+							<strong>${pNum }</strong>
+							</c:if>
+							<c:if test="${pNum != page}">
+							<a href="notice?page=${pNum }&category=${category}&s_word=${s_word}">${pNum }</a>
+							</c:if>
+						</c:forEach>	
+						
+						<!-- 한페이지 뒤로 이동 -->
+						<c:if test="${page<maxPage}">
+						<a href="notice?page=${page+1}&category=${category}&s_word=${s_word}"  class="next"><img src="../images/btn/btn_next1.gif" alt="뒤페이지로"/></a>
+						</c:if>					
+						<c:if test="${page==maxPage}">
+						<a class="next"><img src="../images/btn/btn_next1.gif" alt="뒤페이지로"/></a>
+						</c:if>					
+						<!-- 제일 마지막 페이지로 이동 -->
+						<c:if test="${page!=maxPage}">
+						<a href="notice?page=${maxPage}&category=${category}&s_word=${s_word}" class="n"><img src="../images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
+						</c:if>
+						<c:if test="${page==maxPage}">
+						<a class="n"><img src="../images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
+						</c:if>
 						</div>
 						<!-- //페이징이동1 -->
 					</div>
-<script type="text/javascript">
-function searchBtn(){
-	alert($("#category").val());
-	alert($("#s_word").val());
-}
-</script>
+	<script type="text/javascript">
+		function searchBtn(){
+			//alert($("#category").val());
+			//alert($("#s_word").val());
+			if($("#s_word").val().length < 1){
+				alert("글자를 입력하셔야합니다");
+				return false;	
+			}else{
+				sFrm.submit();
+			}
+		}
+	</script>
 					<div class="searchWrap">
 						<div class="search">
-						<form action="board/notice" name="sFrm" method="post"></form>
+						<form action="/board/notice" name="sFrm" method="post">
 							<ul>
 								<li class="web"><img src="../images/txt/txt_search.gif" alt="search" /></li>
 								<li class="se">
 									<select name="category" id="category">
-										<option value="all" />전체</option>
-										<option value="title" />제목</option>
-										<option value="content" />내용</option>
+										<option value="all"  <c:if test="${category == 'all' }">selected</c:if>  />전체</option>
+										<option value="title" <c:if test="${category == 'title' }">selected</c:if>/>제목</option>
+										<option value="content" <c:if test="${category == 'content' }">selected</c:if> />내용</option>
 									</select>
 								</li>
-								<li><input type="text" name="s_word" id="s_word" class="searchInput" /></li>
+								<li><input type="text" value="${s_word }" name="s_word" id="s_word" class="searchInput" /></li>
 								<li class="web"><a onclick="searchBtn()"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
 								<li class="mobile"><a onclick="searchBtn()"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
 							</ul>
+						</form>
 						</div>
 					</div>
 					<!-- //포토 구매후기 -->

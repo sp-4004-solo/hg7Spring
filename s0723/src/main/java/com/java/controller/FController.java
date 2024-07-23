@@ -14,6 +14,11 @@ public class FController {
 		
 		return "main";
 	}
+	@RequestMapping("/ajax01")
+	public String ajax01() {
+		
+		return "ajax01";
+	}
 	
 //	@RequestMapping("/main")
 //	public String main() {

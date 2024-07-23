@@ -6,27 +6,60 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.java.service.BService;
 
 @Controller
 public class BController {
 	@Autowired BService bService;
 	@RequestMapping("/board/notice")
-	public String notice(Model model) {
-		//board를 db에서 가져와서 게시판에 출력하기
-		HashMap<String, Object>map = bService.selectAll();
-		model.addAttribute("list",map.get("list")); 
+	public String notice(@RequestParam(defaultValue = "1") int page
+			,String category, String s_word ,Model model) {
+
+		// board를 db에서 가져와서 게시판에 출력하기
+		HashMap<String, Object> map = bService.selectAll(page, category, s_word);
+		
+		// list 라는 변수는 Array를 담고있다. 
+		model.addAttribute("list", map.get("list"));
+		
+		model.addAttribute("listCount", map.get("listCount"));
+		model.addAttribute("maxPage", map.get("maxPage"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("endPage", map.get("endPage"));
+		model.addAttribute("startRow", map.get("startRow"));
+		model.addAttribute("endRow", map.get("endRow"));
+		model.addAttribute("page", map.get("page"));
+		model.addAttribute("category", map.get("category"));
+		model.addAttribute("s_word", map.get("s_word"));
+		
+		
+		
 		return "board/notice";
-	}//notice
+	}
+	
 	
 	@RequestMapping("/board/noticeView")
-	public String noticeView(int bno, Model model) {
-		HashMap<String, Object>map = bService.selectOne(bno);
-		model.addAttribute("board",map.get("board"));
-		model.addAttribute("prev",map.get("prev"));
-		model.addAttribute("next",map.get("next"));
+	public String noticeView(@RequestParam(defaultValue = "1") int page
+			,String category, String s_word, int bno, Model model) {
+		System.out.println("BController - noticeView");
+		System.out.println("category : "+category);
+		System.out.println("s_word : "+s_word);
+		
+		HashMap<String, Object> map = bService.selectOne(bno,category,s_word);
+		// 현재 게시글
+		model.addAttribute("board", map.get("board"));
+		// 이전 게시글
+		model.addAttribute("prev", map.get("prev"));
+		// 이후 게시글 
+		model.addAttribute("next", map.get("next"));
+		
+		model.addAttribute("category", category);
+		model.addAttribute("s_word", s_word);
+		model.addAttribute("page", page);
+		
+		
+		
 		return "board/noticeView";
-	}//noticeView
+	}
 }
