@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.Board;
+import com.java.dto.Comment;
 import com.java.mapper.BMapper;
 
 @Service
@@ -58,5 +59,37 @@ public class BServiceImpl implements BService {
 		map.put("next", next);
 		return map;
 	}
-
+	@Override
+	public ArrayList<Comment> selectComAll(int bno) {
+		ArrayList<Comment>list = bMapper.selectComAll(bno);
+		return list;
+	}
+	@Override
+	public Comment commentInsert(Comment comdto) {
+		System.out.println("bservice cno:"+comdto.getCno() );
+		System.out.println("bservice cno:"+comdto.getId() );
+		System.out.println("bservice cno:"+comdto.getCdate() );
+		bMapper.commentInsert(comdto);
+		
+		System.out.println("bservice cno:"+comdto.getCno() );
+		System.out.println("bservice cno:"+comdto.getId() );
+		System.out.println("bservice cno:"+comdto.getCdate() );
+		//하단댓글 1개 가져오기
+		Comment cdto = bMapper.selectComOne(comdto);
+		return null;
+	}
+	@Override
+	public void commentDelete(int cno) {
+		bMapper.commentDelete(cno);
+	}
+	@Override
+	public Comment commentUpdate(Comment cdto) {
+		bMapper.commentUpdate(cdto);
+		Comment comment = bMapper.selectComOne(cdto);
+		
+		return comment;
+	}
+	
+		
+	
 }

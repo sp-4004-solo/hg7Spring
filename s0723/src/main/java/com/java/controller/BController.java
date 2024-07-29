@@ -1,18 +1,51 @@
 package com.java.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.dto.Comment;
 import com.java.service.BService;
 
 @Controller
 public class BController {
 	@Autowired BService bService;
+	
+	@PostMapping("/board/commentDelete")
+	@ResponseBody
+	public String commentDelete(int cno) {
+		System.out.println("cno:"+cno);
+		bService.commentDelete(cno);
+		return "success";
+	}
+	
+	@PostMapping("/board/commentUpdate")
+	@ResponseBody
+	public Comment comment(Comment cdto) {
+		Comment comment =  bService.commentUpdate(cdto);
+		return comment;
+	}
+	
+	@PostMapping("/board/commentInsert")
+	@ResponseBody
+	public Comment commentInsert(Comment comdto) {
+		// comdto jsp에서 전달받은 값
+		System.out.println(comdto.getCcontent());
+		System.out.println(comdto.getId());
+		// 새로 dto를 만들어서 jsp전송할 값 > data 
+		Comment cdto = bService.commentInsert(comdto);
+		return cdto;
+	}
+	
+	
+	
 	@RequestMapping("/board/notice")
 	public String notice(@RequestParam(defaultValue = "1") int page
 			,String category, String s_word ,Model model) {
@@ -47,6 +80,10 @@ public class BController {
 		System.out.println("s_word : "+s_word);
 		
 		HashMap<String, Object> map = bService.selectOne(bno,category,s_word);
+		ArrayList<Comment> comList = bService.selectComAll(bno);
+		// System.out.println(comList.get(0).getCno());
+		// 게시글에 있는 댓글 
+		model.addAttribute("comList",comList);
 		// 현재 게시글
 		model.addAttribute("board", map.get("board"));
 		// 이전 게시글
@@ -63,3 +100,17 @@ public class BController {
 		return "board/noticeView";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

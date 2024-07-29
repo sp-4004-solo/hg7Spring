@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mapper.BMapper">
+
+	<select id="selectAll" resultType="com.java.dto.Board">
+		select * from board
+	</select>
+	
+	<select id="selectOne" resultType="com.java.dto.Board">
+		select * from board where bno=#{bno}
+	</select>
+
+	<select id="commnentAll" resultType="com.java.dto.cBoard">
+		select * from cboard where bno=#{bno}
+	</select>
+
+	<insert id="commentInsert">
+		insert into cBoard values(s_seq.nextval,#{bno},#{id},#{cpw},sysdate,#{ccontent})
+	</insert>
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

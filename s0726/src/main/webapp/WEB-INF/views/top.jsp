@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
     <div id="header">
 		
 		<div id="snbBox">
@@ -13,23 +13,20 @@
 				<ul>
 					<li><a href="#">EVENT</a></li>
 					<li><a href="#">CUSTOMER</a></li>
-					<li><a href="/board/notice">COMMUNITY</a></li>
+					<li><a href="board/notice_view">NOTICE</a></li>
 				</ul>
 			</div>
 			<div id="snb">
-<ul>
+				<ul>
 				<c:if test="${sessionId == null }">
-					<li><a href="/member/login">LOGIN</a></li>
+					<li><a href="/login">LOGIN</a></li>
 					<li><a href="#">JOIN</a></li>
 				</c:if>
-				<c:if test="${sessionId != null }">
-					<li><a href="#">${sessionName }</a></li>
-					<li><a href="/member/logout">LOGOUT</a></li>
+				<c:if test="${sessionName != null }">
+					<li><a>${sessionName }님</a></li>
+					<li><a href="/logout">LOGOUT</a></li>
 				</c:if>
-					<li><a href="/member/mlist">MY PAGE</a></li>
-					<li><a href="#">CART</a></li>
 				</ul>
-
 
 
 				<div id="search">
@@ -41,7 +38,6 @@
 	</div>
 
 
-	
 	<!-- GNB -->
 	<div id="gnb">
 		
@@ -106,3 +102,5 @@
 
 		<script type="text/javascript">initTopMenu();</script>
 	</div>
+	<!-- //GNB -->
+    

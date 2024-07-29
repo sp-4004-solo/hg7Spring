@@ -64,6 +64,37 @@
 					
 				}); // ajaxBtn
 				
+				$("#dbBtn").click(function(){
+					// alert("버튼2");
+					$.ajax({
+						url:"/member/selectAll",
+						method:"post",
+						success:function(data){
+							alert("연결성공");
+							console.log(data);
+							let str='';
+							for(let i=0; i<data.length; i++){
+								str +='<tr>';
+								str +='<td>'+data[i].id+'</td>';
+								str +='<td>'+data[i].name+'</td>';
+								str +='<td>'+data[i].phone+'</td>';
+								str +='<td>'+data[i].gender+'</td>';
+								str +='</tr>';
+							}//for
+							//$("#btable").append(str);
+							//$("#btable").html(str);
+							$("#btable").prepend(str);
+						},
+						error: function(){
+							alert("연결실패");
+						}
+					
+					
+					//success
+					})//ajax
+					
+				}); // ajaxBtn
+				
 			}); // jquery
 		
 		
@@ -78,6 +109,7 @@
 		<p id="text"></p>
 		<button id="loadBtn">load</button>
 		<button id="ajaxBtn">ajax</button>
+		<button id="dbBtn">DB</button>
 		<table>
 			<tr>
 				<th>번호</th>

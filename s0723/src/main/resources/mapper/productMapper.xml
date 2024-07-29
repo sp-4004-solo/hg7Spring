@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mapper.PMapper">
+	
+	<select id="selectAll" resultType="com.java.dto.Product">
+		select * from Product
+	</select>
+	
+	<insert id="insertOne">
+	                               <!-- pno를 가져오겠다 --><!--값을 넣기전에  -->
+		<selectKey resultType="int" keyProperty="pno" order="BEFORE">
+			select p_seq.nextval from dual
+		</selectKey>
+		insert into product values(
+		#{pno}, #{name},#{price}, #{category},sysdate)
+	</insert>
+	<select id="selectOne" resultType="com.java.dto.Product">
+		select * from Product where pno=#{pno}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- <select id="selectAll" resultType="com.java.dto.Product">
+		select * from Product order by pno
+	</select>
+		
+	<insert id="insertOne">
+		<selectKey resultType="int" keyProperty="pno" order="BEFORE">
+			select p_seq.nextval from dual
+		</selectKey>
+			insert into Product values
+			(#{pno}, #{name}, #{price},#{category},sysdate)
+	</insert>	
+		<select id="selectOne" resultType="com.java.dto.Product">
+			select * from Product where pno=#{pno}
+		</select>
+	 -->
+		
+</mapper>
