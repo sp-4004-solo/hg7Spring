@@ -4,6 +4,6 @@ import com.java.dto.Member;
 
 public interface MService {
 
-	int login(Member member);
+	void selectLogin(Member mdto);
 
 }

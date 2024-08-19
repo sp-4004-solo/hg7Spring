@@ -8,25 +8,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+
 @Configuration
 public class AppConfig {
-	
 	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource)
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) 
 			throws Exception{
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		// mapper 설정
+		// mapper 설정 
 		Resource[] res = new PathMatchingResourcePatternResolver()
 				.getResources("classpath:/mapper/**/*.xml");
 		sessionFactory.setMapperLocations(res);
 		return sessionFactory.getObject();
 	}
-	
 	@Bean
 	public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
-	}//sqlSession
+	}
 	
 	
-}//AppConfig
+
+}

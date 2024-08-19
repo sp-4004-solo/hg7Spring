@@ -14,10 +14,10 @@ public interface BMapper {
 
 	Board selectOne(int bno);
 
-	cBoard commnentOne(int bno);
+	ArrayList<cBoard> selectComAll(int bno);
 
-	ArrayList<cBoard> commnentAll(int bno);
+	void insertComOne(cBoard cb);
 
-	void commentInsert(cBoard cboard);
+	cBoard selectComOne(cBoard cb);
 
 }

@@ -2,8 +2,6 @@ package com.java.service;
 
 import java.util.ArrayList;
 
-import javax.xml.stream.events.Comment;
-
 import com.java.dto.Board;
 import com.java.dto.cBoard;
 
@@ -13,14 +11,8 @@ public interface BService {
 
 	Board selectOne(int bno);
 
-	ArrayList<cBoard> commnentAll(int bno);
+	ArrayList<cBoard> selectComAll(int bno);
 
-	cBoard commentInsert(cBoard cboard);
-
-	
-
-	
-
-	
+	cBoard insertCom(cBoard cb);
 
 }

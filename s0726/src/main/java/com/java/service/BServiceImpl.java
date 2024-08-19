@@ -1,9 +1,6 @@
 package com.java.service;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.stream.events.Comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +10,11 @@ import com.java.dto.cBoard;
 import com.java.mapper.BMapper;
 
 @Service
-
 public class BServiceImpl implements BService {
 	@Autowired BMapper bMapper;
 	@Override
 	public ArrayList<Board> selectAll() {
-		ArrayList<Board>list = bMapper.selectAll();
+		ArrayList<Board> list = bMapper.selectAll();
 		return list;
 	}
 	@Override
@@ -27,17 +23,15 @@ public class BServiceImpl implements BService {
 		return board;
 	}
 	@Override
-	public ArrayList<cBoard> commnentAll(int bno) {
-		ArrayList<cBoard>comt = bMapper.commnentAll(bno);
-		return comt;
+	public ArrayList<cBoard> selectComAll(int bno) {
+		ArrayList<cBoard> list = bMapper.selectComAll(bno);
+		return list;
 	}
 	@Override
-	public cBoard commentInsert(cBoard cboard) {
-		bMapper.commentInsert(cboard);
-		cBoard cbod = bMapper.commnentOne(cboard.getCno());
-		return null;
+	public cBoard insertCom(cBoard cb) {
+		bMapper.insertComOne(cb);
+		cBoard comment = bMapper.selectComOne(cb);
+		return comment;
 	}
-	
-	
-	
+
 }
