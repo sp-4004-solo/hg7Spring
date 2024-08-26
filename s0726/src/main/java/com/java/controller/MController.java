@@ -14,8 +14,10 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/member")
 public class MController {
+	
 	@Autowired MService mService;
 	@Autowired HttpSession session;
+	
 	@GetMapping("/login")
 	public String login() {
 		return "member/login";

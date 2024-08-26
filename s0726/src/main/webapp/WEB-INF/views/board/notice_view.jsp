@@ -233,7 +233,7 @@ $(document).ready(function() {
 								<a href="#" class="rebtn">삭제</a>
 							</li>
 						</ul>
-				<c:forEach var="com" items="${clist }">
+<c:forEach var="com" items="${clist }">
 						<ul id=${com.cno }>
 							<li class="name"> ${com.id } <span>[ ${com.cdate } ]</span></li>
 							<li class="txt">${com.ccontent }</li>
@@ -242,7 +242,7 @@ $(document).ready(function() {
 								<a href="#" class="rebtn">삭제</a>
 							</li>
 						</ul>
-				</c:forEach>
+</c:forEach>
 
 						<ul>
 							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>

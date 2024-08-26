@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +20,6 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
-
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -197,7 +191,7 @@ $(document).ready(function() {
 			<ol>
 				<li><a href="#">HOME</a></li>
 				<li><a href="#">MEMBERSHIP</a></li>
-				<li class="last">로그인</li>
+				<li class="last">아이디/비밀번호 찾기</li>
 			</ol>
 		</div>
 		
@@ -212,68 +206,41 @@ $(document).ready(function() {
 					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
 					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
 				</ul>			
-			</div><script type="text/javascript">initSubmenu(1,0);</script>
+			</div><script type="text/javascript">initSubmenu(3,0);</script>
 
-<script type="text/javascript">
-
-if("${result}"==1){
-	location.href = "/index";
-}else if("${result}"== 2 ){
-	alert("아이디 또는 비밀번호가 잘못입력되었습니다");
-}
-
-function loginBtn(){
-	/* alert();
-	console.log($("#id").val());
-	console.log($("#pw").val()); */
-	loginFrm.submit();
-	
-}
-
-</script>
 
 			<!-- contents -->
 			<div id="contents">
 				<div id="member">
-					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
-					<h3>회원 로그인</h3>
+					<h2><strong>아이디/비밀번호 찾기</strong><span>회원님께서 가입하신 아이디와 비밀번호를 찾아드립니다.</span></h2>
+					<h3>아이디 찾기</h3>
 					<div class="informbox">
 						<div class="inform">
-						<form action="/member/login" method="post" name="loginFrm">
-						
 							<ul>
-								<li><input type="text"       id="id" name="id"   class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password"   id="pw" name="pw"   class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="text" class="nameType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='nameType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="password" class="emailType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='emailType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 							</ul>
 
-							<div class="btn"><a onclick="loginBtn()" class="sbtn">로그인</a></div>
-							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
-
-							<div class="point">
-								<p>아이디와 비밀번호를 잊으셨나요?</p>
-								<a href="#" class="nbtn">아이디/비밀번호 찾기</a>
-							</div>
-						</form>
+							<div class="btn"><a href="#" class="gbtn">아이디 찾기</a></div>
 						</div>
 					</div>
 
 
 
-					<h3>비회원 주문 조회</h3>
+					<h3>비밀번호 찾기</h3>
 					<div class="informbox">
 						<div class="inform">
 							<ul>
-								<li><input type="text" class="ordererType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordererType'}else {this.className='mfocusnot'}" /></li>
-								<li><input type="text" class="ordernumType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordernumType'}else {this.className='mfocusnot'}" /></li>
+								<li><input type="text" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" /></li>
+								<li><input type="text" class="emailType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='emailType'}else {this.className='mfocusnot'}" /></li>
 							</ul>
 
-							<div class="btn"><a href="#" class="gbtn">조회하기</a></div>
-							<div class="point">
-								<p>아직 JARDIN 회원이 아니신가요? <span>회원가입하시고 다양한 혜택을 받으세요.</span></p>
-								<a href="#" class="nbtn">회원가입</a>
-							</div>
+							<div class="btn"><a href="#" class="gbtn">비밀번호 찾기</a></div>
 						</div>
 					</div>
+
+
+					<p class="alert">쟈뎅 온라인 쇼핑몰에서는 2012년 8월 18일로 시행되는 정보통신망 이용 촉진 및 정보 보호 등에 관한 법률 “주민등록번호의 <span>사용 제한”과 관련하여 주민등록번호를 수집하지 않습니다.</span></p>
 
 				</div>
 			</div>

@@ -9,7 +9,9 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/login.css">
+  
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
   <script type="text/javascript">
 	  $(function(){
 		  if(${loginCk==1}){
@@ -21,6 +23,7 @@
 		 }
 	  }); //jquery
   </script>
+
 </head>
 
 <body>

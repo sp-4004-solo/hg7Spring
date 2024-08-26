@@ -5,8 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FController {
-	@RequestMapping("/")
+	
+	@RequestMapping("/index")
 	public String index() {
 		return "/index";
 	}
+
+
+	@RequestMapping("/notice")
+	public String notice() {
+		return "notice";
+	}
+	
+	
 }

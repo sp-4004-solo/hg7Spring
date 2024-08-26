@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +20,6 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
-
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -197,7 +191,7 @@ $(document).ready(function() {
 			<ol>
 				<li><a href="#">HOME</a></li>
 				<li><a href="#">MEMBERSHIP</a></li>
-				<li class="last">로그인</li>
+				<li class="last">회원가입</li>
 			</ol>
 		</div>
 		
@@ -212,68 +206,61 @@ $(document).ready(function() {
 					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
 					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
 				</ul>			
-			</div><script type="text/javascript">initSubmenu(1,0);</script>
+			</div><script type="text/javascript">initSubmenu(2,0);</script>
 
-<script type="text/javascript">
-
-if("${result}"==1){
-	location.href = "/index";
-}else if("${result}"== 2 ){
-	alert("아이디 또는 비밀번호가 잘못입력되었습니다");
-}
-
-function loginBtn(){
-	/* alert();
-	console.log($("#id").val());
-	console.log($("#pw").val()); */
-	loginFrm.submit();
-	
-}
-
-</script>
 
 			<!-- contents -->
 			<div id="contents">
 				<div id="member">
-					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
-					<h3>회원 로그인</h3>
-					<div class="informbox">
-						<div class="inform">
-						<form action="/member/login" method="post" name="loginFrm">
-						
-							<ul>
-								<li><input type="text"       id="id" name="id"   class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password"   id="pw" name="pw"   class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-							</ul>
+					<h2><strong>회원가입</strong><span>회원으로 가입하시면 보다 더 다양한 혜택을 누리실 수 있습니다.</span></h2>
+					
+					<!-- STEP -->
+					<div class="stepWrap">
+						<div class="step">
+							<p class="web">STEP 01</p>
+							<p class="txt">실명확인</p>							
+						</div>
 
-							<div class="btn"><a onclick="loginBtn()" class="sbtn">로그인</a></div>
-							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
+						<div class="step">
+							<p class="web">STEP 02</p>
+							<p class="txt">약관 동의</p>
+						</div>
 
-							<div class="point">
-								<p>아이디와 비밀번호를 잊으셨나요?</p>
-								<a href="#" class="nbtn">아이디/비밀번호 찾기</a>
-							</div>
-						</form>
+						<div class="step">
+							<p class="web">STEP 03</p>
+							<p class="txt"><span>회원정보</span> <span>입력</span></p>
+						</div>
+
+						<div class="step stepon">
+							<p class="web">STEP 04</p>
+							<p class="txt"><span>회원가입</span> <span>완료</span></p>
+							<p class="ck"><img src="../images/bg/bg_step.png" alt="현재위치" /></p>
 						</div>
 					</div>
+					<!-- //STEP -->
+					
+					<div class="celebrate">	
+						<div class="img"><img src="../images/txt/txt_celebrate01.png" alt="JARDIN THECOFFEE CERATOR, SINCE 1984" /></div>
+						<p class="thx">감사합니다. <span>회원가입이 완료되었습니다.</span></p>
+						<p class="txt">
+							저희 가족이 되어주셔서 감사합니다.<br/>
+							가입 시 입력하신 이메일로 가입 완료 메일이 전송되었습니다.<br/>
+							언제나 고객님께 즐겁고 소중한 시간이 되도록 최선을 다 하겠습니다.<br/><br/>
+							가입 시 입력하신 정보는 마이페이지에서 수정하실 수 있습니다.
+						</p>
+					</div>
 
-
-
-					<h3>비회원 주문 조회</h3>
-					<div class="informbox">
-						<div class="inform">
+					<!-- Btn Area -->
+					<div class="btnArea">
+						<div class="bCenter">
 							<ul>
-								<li><input type="text" class="ordererType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordererType'}else {this.className='mfocusnot'}" /></li>
-								<li><input type="text" class="ordernumType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordernumType'}else {this.className='mfocusnot'}" /></li>
+								<li><a href="#" class="nbtnbig">메인으로</a></li>
+								<li><a href="#" class="sbtnMini">로그인</a></li>
 							</ul>
-
-							<div class="btn"><a href="#" class="gbtn">조회하기</a></div>
-							<div class="point">
-								<p>아직 JARDIN 회원이 아니신가요? <span>회원가입하시고 다양한 혜택을 받으세요.</span></p>
-								<a href="#" class="nbtn">회원가입</a>
-							</div>
 						</div>
 					</div>
+					<!-- //Btn Area -->
+
 
 				</div>
 			</div>
